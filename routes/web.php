@@ -23,6 +23,7 @@ Route::post('/penghuni/nim')->name('mahasiswa');
 
 Route::get('/', 'HomeController@pengumuman');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::post('/dashboard', 'DashboardController@save_info')->name('dashboard');
 Route::get('/editprofile', 'UserController@editprofile')->name('editprofile');
 Route::post('editprofile', 'UserController@saveprofile')->name('editprofile');
 Route::get('/pengumuman', 'HomeController@load_all_pengumuman');

@@ -23,7 +23,7 @@
 					<i>Username</i><br>
 					<b><span class="fa fa-user"></span> {{$user->username}}</b><br>
 					<i>Nama Lengkap</i><br>
-					<b><span class="fa fa-drivers-license-o""></span>  {{$user->name}}</b><br>
+					<b><span class="fa fa-drivers-license-o"></span>  {{$user->name}}</b><br>
 					<i>Email</i><br>
 					<b><span class="fa fa-envelope"></span> {{$user->email}}</b><br><br>
 					<b><i><a href="#"><span class="fa fa-key"></span> Ganti Password</a></i></b>
@@ -110,7 +110,7 @@
 			@if($userPenghuni == '0' && $user->is_penghuni == 1)
 				<h1 style="margin-top: 0px;"><b>Data Diri Penghuni</b></h1>
 				<p>Sebelum melanjutkan pada daftar aplikasi, silahkan melengkapi data diri Anda pada form di bawah ini.</p>
-				<form action="" method="post" class="flp">
+				<form action="{{route('dashboard')}}" method="post" class="flp">
 					{{ csrf_field() }}
 					<div style="border: 1px solid #C9C9C9; border-radius: 5px;">
 						<div style="background-color: #E8E8E8; padding: 10px 15px 10px 15px">
@@ -157,18 +157,18 @@
 							</div><br>
 							<input class="input" name="tempat_lahir" type="text" value="{{old('tempat_lahir')}}" placeholder="Kota Lahir" required><br><br>
 							Golongan Darah:<br>
-							<input value="{{old('gol_darah')}}" type="radio" name="gol_darah" value="O" required> O
+							<input type="radio" name="gol_darah" value="O" required> O
 							<span style="display: inline-block; width: 50px;"></span>
-							<input value="{{old('gol_darah')}}" type="radio" name="gol_darah" value="AB" required> AB
+							<input type="radio" name="gol_darah" value="AB" required> AB
 							<span style="display: inline-block; width: 50px;"></span>
-							<input value="{{old('gol_darah')}}" type="radio" name="gol_darah" value="A" required> A
+							<input type="radio" name="gol_darah" value="A" required> A
 							<span style="display: inline-block; width: 50px;"></span>
-							<input value="{{old('gol_darah')}}" type="radio" name="gol_darah" value="B" required> B
+							<input type="radio" name="gol_darah" value="B" required> B
 							<span style="display: inline-block; width: 50px;"></span><br><br>
 							Jenis Kelamin:<br>
-							<input value="{{old('kelamin')}}" type="radio" name="kelamin" value="L" required> Laki-laki
+							<input type="radio" name="kelamin" value="L" required> Laki-laki
 							<span style="display: inline-block; width: 50px;"></span>
-							<input value="{{old('kelamin')}}" type="radio" name="kelamin" value="P" required> Perempuan<br><br>
+							<input type="radio" name="kelamin" value="P" required> Perempuan<br><br>
 							Asal Negara:<br>
 							<select id="country" name ="negara"></select></br></br>
 							Propinsi/State:<br>
@@ -178,6 +178,7 @@
 							</script>
 							<input class="input" name="kota" type="text" value="{{old('kota')}}" placeholder="Nama Kota" required><br><br>
 							<input class="input" name="alamat" type="text" value="{{old('alamat')}}" placeholder="Alamat" required><br><br>
+							<input class="input" name="kode_pos" type="text" value="{{old('kodepos')}}" placeholder="Kode Pos" required><br><br>
 							<input class="input" name="agama" type="text" value="{{old('agama')}}" placeholder="Agama" required><br><br>
 							<input class="input" name="pekerjaan" type="text" value="{{old('pekerjaan')}}" placeholder="Pekerjaan" required><br><br>
 							Warga Negara:<br>
@@ -187,8 +188,13 @@
 							<div id="non_itb" style="display: none;">
 							<input class="input" name="instansi" type="text" value="{{old('instansi')}}" placeholder="Nama Instansi" required><br><br>
 							</div>
+							{{-- @if ($info_penghuni->pekerjaan == 'Mahasiswa ITB')
+                                <input id="instansi" type="text" class="form-control" name="instansi" value="Institut Teknologi Bandung" readonly="true" required>
+                            @else
+                                <input id="instansi" type="text" class="form-control" name="instansi" value="{{ $info_penghuni->instansi }}" required>
+                            @endif --}}
 							<div id="itb" style="display: none;">
-								<input class="input" name="instansi" type="text" value="Institut Teknologi Bandung" class="input" disabled><br><br>
+								<input class="input" name="instansi" type="text" value="Institut Teknologi Bandung" class="input"><br><br>
 							</div>
 							<script language="javascript">
 								populateCountries("country2");
@@ -203,7 +209,7 @@
 							<input class="input" name="nama_ortu_wali" type="text" value="{{old('nama_ortu_wali')}}" placeholder="Nama Orang Tua / Wali" required><br><br>
 							<input class="input" name="pekerjaan_ortu_wali" type="text" value="{{old('pekerjaan_ortu_wali')}}" placeholder="Pekerjaan Orang Tua / Wali" required><br><br>
 							<input class="input" name="telepon_ortu_wali" type="text" value="{{old('telepon_ortu_wali')}}" placeholder="Telepon Orang Tua / Wali" required><br><br>
-							<button type="button" class="button">Submit</button><br><br>
+							<button type="submit" class="button">Submit</button><br><br>
 						</div>
 					</div><br>
 				</form> 

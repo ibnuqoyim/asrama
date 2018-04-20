@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Model_DownloadFile;
+use App\File_download;
 use App\DaftarAsramaReguler;
 use Illuminate\Support\Facades\Auth;
 use PDF;
@@ -16,7 +16,7 @@ use App\UserPenghuni;
 class DownloadController extends Controller
 {
     public function download_file($id) {
-      $file = Model_DownloadFile::where('id_file', $id)->select('url_file')->first();
+      $file = File_download::where('id_file', $id)->select('url_file')->first();
       $file_url = (string) $file;
 
       $file_url = str_replace('\\\\', '\\', $file_url);
@@ -33,7 +33,7 @@ class DownloadController extends Controller
     }
 
     public function show_all_downloadable_file() {
-        $downloadable = Model_DownloadFile::all();
+        $downloadable = File_download::all();
         return view('download.download', ['downloadable'=> $downloadable]);
     }
 
@@ -103,7 +103,7 @@ class DownloadController extends Controller
                          ->first();
               $statusReguler = 1;
             } else {
-              $file = Model_DownloadFile::where('id_file', $id)->select('url_file')->first();
+              $file = File_download::where('id_file', $id)->select('url_file')->first();
               $file_url = (string) $file;
 
               $file_url = str_replace('\\\\', '\\', $file_url);
@@ -119,7 +119,7 @@ class DownloadController extends Controller
               #return download dokumen kosong
             }
           } else {
-            $file = Model_DownloadFile::where('id_file', $id)->select('url_file')->first();
+            $file = File_download::where('id_file', $id)->select('url_file')->first();
             $file_url = (string) $file;
 
             $file_url = str_replace('\\\\', '\\', $file_url);
@@ -193,7 +193,7 @@ class DownloadController extends Controller
                          ->first();
               $statusReguler = 1;
             } else {
-              $file = Model_DownloadFile::where('id_file', $id)->select('url_file')->first();
+              $file = File_download::where('id_file', $id)->select('url_file')->first();
               $file_url = (string) $file;
 
               $file_url = str_replace('\\\\', '\\', $file_url);
@@ -209,7 +209,7 @@ class DownloadController extends Controller
               #return download dokumen kosong
             }
           } else {
-            $file = Model_DownloadFile::where('id_file', $id)->select('url_file')->first();
+            $file = File_download::where('id_file', $id)->select('url_file')->first();
             $file_url = (string) $file;
 
             $file_url = str_replace('\\\\', '\\', $file_url);
@@ -259,7 +259,7 @@ class DownloadController extends Controller
                           ->first();
               $statusReguler = 1;
             } else {
-              $file = Model_DownloadFile::where('id_file', $id)->select('url_file')->first();
+              $file = File_download::where('id_file', $id)->select('url_file')->first();
               $file_url = (string) $file;
 
               $file_url = str_replace('\\\\', '\\', $file_url);
@@ -275,7 +275,7 @@ class DownloadController extends Controller
               #return download dokumen kosong
             }
           } else {
-            $file = Model_DownloadFile::where('id_file', $id)->select('url_file')->first();
+            $file = File_download::where('id_file', $id)->select('url_file')->first();
             $file_url = (string) $file;
 
             $file_url = str_replace('\\\\', '\\', $file_url);

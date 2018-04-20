@@ -77,4 +77,38 @@ class DashboardController extends Controller
         			'user'=>$user,'pengelola'=>$pengelola,
         			'pengelolaAsrama'=>$pengelolaAsrama]);
     }
+
+    public function save_info(Request $request) {
+        if(Auth::guest()) {
+            return redirect ('login');
+        } else {
+            $user = Auth::user();
+            $user_penghuni = ($user->user_penghuni == null) ? new User_penghuni : $user->user_penghuni;
+            $user_penghuni->id_user = $user->id;
+            $user_penghuni->nomor_identitas = $request->nomor_identitas;
+            $user_penghuni->jenis_identitas = $request->jenis_identitas;
+            $user_penghuni->tempat_lahir = $request->tempat_lahir;
+            $user_penghuni->gol_darah = $request->gol_darah;
+            $user_penghuni->jenis_kelamin = $request->kelamin;
+            $user_penghuni->tanggal_lahir = $request->date;
+            $user_penghuni->kodepos = $request->kode_pos;
+            $user_penghuni->negara = $request->negara;
+            $user_penghuni->propinsi = $request->propinsi;
+            $user_penghuni->kota = $request->kota;
+            $user_penghuni->alamat = $request->alamat;
+            $user_penghuni->agama = $request->agama;
+            $user_penghuni->pekerjaan = $request->pekerjaan;
+            $user_penghuni->warga_negara = $request->warga_negara;
+            $user_penghuni->telepon = $request->telepon;
+            $user_penghuni->kontak_darurat = $request->kontak_darurat;
+            $user_penghuni->instansi = $request->instansi;
+            $user_penghuni->nama_ortu_wali = $request->nama_ortu_wali;
+            $user_penghuni->pekerjaan_ortu_wali = $request->pekerjaan_ortu_wali;
+            $user_penghuni->telepon_ortu_wali = $request->telepon_ortu_wali;
+            $user_penghuni->save();
+
+            return redirect('dashboard');
+            
+        }
+    }
 }
